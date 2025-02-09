@@ -1,68 +1,85 @@
 .success-container {
   min-height: 100vh;
+  padding: 40px 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 20px;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-sizing: border-box;
 }
 
 .success-content {
-  background: white;
-  border-radius: 20px;
-  padding: 30px;
-  width: 90%;
+  width: 100%;
   max-width: 400px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .success-title {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
-  color: #333;
+  color: white;
+  margin-bottom: 40px;
   text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.success-trophy {
-  font-size: 64px;
-  margin: 20px 0;
-}
-
-.stats-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin: 20px 0;
+.success-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
 .stat-item {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding: 10px 15px;
+  text-align: center;
+  padding: 16px;
   background: #f8f9fa;
-  border-radius: 10px;
+  border-radius: 12px;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 }
 
 .stat-label {
+  font-size: 14px;
   color: #666;
-  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 .stat-value {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
   color: #333;
+  
+  &.level {
+    text-transform: capitalize;
+  }
 }
 
-.new-game-button {
-  width: 100% !important;
-  height: 45px !important;
-  font-size: 18px !important;
-  margin-top: 10px;
+// Style the button
+:global {
+  .nut-button {
+    width: 100%;
+    max-width: 400px;
+    height: 48px;
+    font-size: 18px;
+    border-radius: 24px;
+    background: white;
+    color: #667eea;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    &:active {
+      transform: translateY(1px);
+    }
+  }
 }
