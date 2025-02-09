@@ -1,0 +1,64 @@
+.profile-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.profile-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-info {
+  color: white;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.profile-rank {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.section-title {
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.stats-section {
+  margin-top: 20px;
+}
+
+.achievements-section {
+  margin-top: 20px;
+}
+
+:global {
+  .nut-cell {
+    padding: 16px 20px;
+  }
+
+  .nut-cell__title {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .nut-cell__description {
+    font-size: 16px;
+    color: #666;
+    font-weight: bold;
+  }
+
+  .nut-avatar {
+    --nutui-avatar-square: 80px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
