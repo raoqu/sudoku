@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View } from '@tarojs/components'
+import { useDidShow } from '@tarojs/taro'
 import { ConfigProvider, Empty, Button } from '@nutui/nutui-react-taro'
 import { getGameHistory, clearGameHistory, GameRecord } from '../../utils/storage'
 import './index.scss'
@@ -8,9 +9,10 @@ function History() {
   const [gameHistory, setGameHistory] = useState<GameRecord[]>([]);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
-  useEffect(() => {
+  // Load history whenever the page is shown
+  useDidShow(() => {
     loadHistory();
-  }, []);
+  });
 
   const loadHistory = () => {
     const history = getGameHistory();
