@@ -1,0 +1,92 @@
+.nutui-react-demo {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sudoku-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.difficulty-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sudoku-board {
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1;
+  border: 2px solid #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.sudoku-row {
+  display: flex;
+  flex: 1;
+
+  &:nth-child(3n) {
+    border-bottom: 2px solid #333;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.sudoku-cell {
+  flex: 1;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  background: white;
+  position: relative;
+
+  &:nth-child(3n) {
+    border-right: 2px solid #333;
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &.fixed {
+    color: #666;
+    background: #f5f5f5;
+  }
+
+  &.selected {
+    background: #e3f2fd;
+  }
+}
+
+.number-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 20px;
+}
+
+.number-button {
+  width: 100% !important;
+  height: 50px !important;
+  font-size: 20px !important;
+}
+
+.new-game-button {
+  margin-top: 20px;
+  width: 200px !important;
+}
