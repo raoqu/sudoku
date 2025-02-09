@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { View } from '@tarojs/components'
-import { Button, ConfigProvider, Dialog } from '@nutui/nutui-react-taro'
+import { Button, ConfigProvider } from '@nutui/nutui-react-taro'
 import { generateSudoku, Board, Cell, Difficulty, isBoardComplete } from '../../utils/sudoku'
+import Taro from '@tarojs/taro'
 import './index.scss'
 
 function Index() {
   const [board, setBoard] = useState<Board>([]);
   const [difficulty, setDifficulty] = useState<Difficulty>('simple');
   const [selectedCell, setSelectedCell] = useState<[number, number] | null>(null);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [startTime, setStartTime] = useState<number>(0);
+  const [blankCount, setBlankCount] = useState<number>(0);
 
   useEffect(() => {
     startNewGame();
@@ -17,7 +19,16 @@ function Index() {
   const startNewGame = () => {
     const newBoard = generateSudoku(difficulty);
     setBoard(newBoard);
-    setShowSuccess(false);
+    setStartTime(Date.now());
+    
+    // Count blank cells
+    let blanks = 0;
+    newBoard.forEach(row => {
+      row.forEach(cell => {
+        if (!cell.fixed) blanks++;
+      });
+    });
+    setBlankCount(blanks);
   };
 
   const handleCellClick = (row: number, col: number) => {
@@ -35,7 +46,10 @@ function Index() {
         setBoard(newBoard);
 
         if (isBoardComplete(newBoard)) {
-          setShowSuccess(true);
+          const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
+          Taro.redirectTo({
+            url: `/pages/success/index?level=${difficulty}&timeElapsed=${timeElapsed}&blankCount=${blankCount}`
+          });
         }
       }
     }
@@ -103,16 +117,6 @@ function Index() {
         <Button type='primary' onClick={startNewGame} className='new-game-button'>
           New Game
         </Button>
-
-        <Dialog
-          visible={showSuccess}
-          title="Congratulations!"
-          content="You've completed the Sudoku puzzle!"
-          onConfirm={() => {
-            setShowSuccess(false);
-            startNewGame();
-          }}
-        />
       </View>
     </ConfigProvider>
   )
