@@ -1,14 +1,22 @@
 .failure-container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  background: #ffecd2;
   padding: 20px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
 }
 
 .failure-content {
-  background: white;
+  background: #ffffff;
   border-radius: 20px;
   padding: 30px;
   width: 90%;
@@ -18,13 +26,15 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  margin-top: -50px;
 }
 
 .failure-title {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
-  color: #333;
+  color: #333333;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .failure-emoji {
@@ -32,7 +42,14 @@
   margin: 20px 0;
 }
 
-.stats-container {
+.failure-message {
+  font-size: 18px;
+  color: #666666;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.failure-stats {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -44,32 +61,38 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  padding: 15px;
   background: #f8f9fa;
   border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .stat-label {
-  color: #666;
   font-size: 16px;
+  color: #666666;
 }
 
 .stat-value {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-.message {
-  text-align: center;
-  color: #666;
   font-size: 16px;
-  margin: 10px 0;
+  font-weight: bold;
+  color: #333333;
 }
 
 .try-again-button {
-  width: 100% !important;
-  height: 45px !important;
-  font-size: 18px !important;
-  margin-top: 10px;
+  margin-top: 20px;
+  width: 80%;
+  height: 44px;
+  border-radius: 22px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #667eea;
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  transition: all 0.3s ease;
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(102, 126, 234, 0.25);
+  }
 }

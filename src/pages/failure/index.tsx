@@ -39,8 +39,8 @@ function Failure() {
 
   return (
     <View className='failure-container'>
-      <View className='failure-title'>Game Over</View>
       <View className='failure-content'>
+        <View className='failure-title'>Game Over</View>
         <View className='failure-message'>Don't give up! Try again!</View>
         <View className='failure-stats'>
           <View className='stat-item'>
@@ -52,18 +52,27 @@ function Failure() {
             <View className='stat-value'>{formatTime(timeElapsed)}</View>
           </View>
           <View className='stat-item'>
-            <View className='stat-label'>Numbers Completed</View>
+            <View className='stat-label'>Completed</View>
             <View className='stat-value'>{completedCount} / {blankCount}</View>
           </View>
         </View>
+        <Button 
+          type='primary'
+          className='try-again-button'
+          onClick={(e) => {
+            if (process.env.TARO_ENV === 'weapp') {
+              handleTryAgain()
+            } else {
+              Taro.atMessage({
+                'message': 'Try Again',
+                'type': 'warning',
+              })
+            }
+          }}
+        >
+          Try Again
+        </Button>
       </View>
-      <Button 
-        type='primary'
-        block
-        onClick={handleTryAgain}
-      >
-        Try Again
-      </Button>
     </View>
   )
 }
