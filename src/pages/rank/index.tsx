@@ -39,7 +39,7 @@ function Rank() {
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
-  const renderRankList = (level: 'simple' | 'middle' | 'hard') => {
+  const renderRankList = (level: '简单' | '中等' | '困难') => {
     return (
       <View className='rank-list'>
         {rankData[level].map((item, index) => (
@@ -61,18 +61,18 @@ function Rank() {
   return (
     <ConfigProvider>
       <View className='rank-container'>
-        <View className='rank-title'>Leaderboard</View>
-        <Tabs 
+        <View className='rank-title'>排行榜</View>
+        <Tabs
           value={activeTab}
           onChange={({ value }) => setActiveTab(value)}
         >
-          <Tabs.TabPane title='Simple' value='1'>
+          <Tabs.TabPane title='简单' value='1'>
             {renderRankList('simple')}
           </Tabs.TabPane>
-          <Tabs.TabPane title='Middle' value='2'>
+          <Tabs.TabPane title='中等' value='2'>
             {renderRankList('middle')}
           </Tabs.TabPane>
-          <Tabs.TabPane title='Hard' value='3'>
+          <Tabs.TabPane title='困难' value='3'>
             {renderRankList('hard')}
           </Tabs.TabPane>
         </Tabs>

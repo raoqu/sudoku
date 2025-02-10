@@ -39,7 +39,7 @@ function History() {
     return (
       <ConfigProvider>
         <View className='history-container'>
-          <View className='history-title'>Game History</View>
+          <View className='history-title'>历史记录</View>
           <Empty description='No games played yet' />
         </View>
       </ConfigProvider>
@@ -50,8 +50,8 @@ function History() {
     <ConfigProvider>
       <View className='history-container'>
         <View className='history-header'>
-          <View className='history-title'>Game History</View>
-          <Button 
+          <View className='history-title'>历史记录</View>
+          <Button
             type='danger'
             size='small'
             onClick={handleClearHistory}
@@ -67,18 +67,18 @@ function History() {
                 <View className='history-item-date'>{formatDate(record.date)}</View>
                 <View className='history-item-result'>{record.result}</View>
               </View>
-              
+
               <View className='history-item-details'>
                 <View className='detail-row'>
                   <View className='detail-label'>Level:</View>
                   <View className='detail-value'>{record.level}</View>
                 </View>
-                
+
                 <View className='detail-row'>
                   <View className='detail-label'>Time:</View>
                   <View className='detail-value'>{formatTime(record.timeElapsed)}</View>
                 </View>
-                
+
                 <View className='detail-row'>
                   <View className='detail-label'>Score:</View>
                   <View className='detail-value'>{record.score}</View>

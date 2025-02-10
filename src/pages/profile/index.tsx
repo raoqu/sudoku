@@ -31,7 +31,7 @@ function Profile() {
     <ConfigProvider>
       <View className='profile-container'>
         <View className='profile-header'>
-          <Avatar 
+          <Avatar
             size='large'
             icon='my'
           />
@@ -42,24 +42,24 @@ function Profile() {
         </View>
 
         <View className='stats-section'>
-          <View className='section-title'>Statistics</View>
+          <View className='section-title'>统计</View>
           <Cell.Group>
-            <Cell title='Games Played' description={userStats.gamesPlayed.toString()} />
-            <Cell 
-              title='Win Rate' 
-              description={`${Math.round((userStats.gamesWon / userStats.gamesPlayed) * 100)}%`} 
+            <Cell title='练习次数' description={userStats.gamesPlayed.toString()} />
+            <Cell
+              title='成功率'
+              description={`${Math.round((userStats.gamesWon / userStats.gamesPlayed) * 100)}%`}
             />
-            <Cell title='Best Time' description={formatTime(userStats.bestTime)} />
-            <Cell title='Total Score' description={userStats.totalScore.toString()} />
+            <Cell title='最佳时间' description={formatTime(userStats.bestTime)} />
+            <Cell title='总分数' description={userStats.totalScore.toString()} />
           </Cell.Group>
         </View>
 
         <View className='achievements-section'>
-          <View className='section-title'>Achievements</View>
+          <View className='section-title'>成就</View>
           <Cell.Group>
-            <Cell title='First Win' description='🏆' />
-            <Cell title='Speed Demon' description='⚡️' />
-            <Cell title='Perfect Game' description='⭐️' />
+            <Cell title='首次达成' description='🏆' />
+            <Cell title='速度先锋' description='⚡️' />
+            <Cell title='完美达成' description='⭐️' />
           </Cell.Group>
         </View>
       </View>

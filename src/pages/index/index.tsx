@@ -34,7 +34,7 @@ function Index() {
     setErrorCount(0);
     setCellErrors([]);
     setCompletedCount(0);
-    
+
     // Count blank cells
     let blanks = 0;
     newBoard.forEach(row => {
@@ -63,7 +63,7 @@ function Index() {
       for (let j = 0; j < 3; j++) {
         const currentRow = boxRow + i;
         const currentCol = boxCol + j;
-        if (currentRow !== row && currentCol !== col && 
+        if (currentRow !== row && currentCol !== col &&
             board[currentRow][currentCol].value === value) {
           return false;
         }
@@ -104,7 +104,7 @@ function Index() {
           await playSound('error');
           const newErrorCount = errorCount + 1;
           setErrorCount(newErrorCount);
-          
+
           // Add to error cells
           setCellErrors(prev => [...prev, { row, col, value: num }]);
 
@@ -131,32 +131,34 @@ function Index() {
   return (
     <View className='sudoku-container'>
       <View className='difficulty-buttons'>
-        <View 
+        <View
           className={`difficulty-button ${difficulty === 'simple' ? 'active' : ''}`}
           onClick={() => handleDifficultyChange('simple')}
           onTap={() => handleDifficultyChange('simple')}
         >
-          <Text>Simple</Text>
+          <Text>简单</Text>
         </View>
         <View
           className={`difficulty-button ${difficulty === 'middle' ? 'active' : ''}`}
           onClick={() => handleDifficultyChange('middle')}
           onTap={() => handleDifficultyChange('middle')}
         >
-          <Text>Middle</Text>
+          <Text>中等</Text>
         </View>
         <View
           className={`difficulty-button ${difficulty === 'hard' ? 'active' : ''}`}
           onClick={() => handleDifficultyChange('hard')}
           onTap={() => handleDifficultyChange('hard')}
         >
-          <Text>Hard</Text>
+          <Text>困难</Text>
         </View>
       </View>
 
-      <View className='error-counter'>
-        <Text>Mistakes: {errorCount} / {MAX_ERRORS}</Text>
-      </View>
+      {errorCount > 0 && (
+        <View className='error-counter'>
+          <Text>Mistakes: {errorCount} / {MAX_ERRORS}</Text>
+        </View>
+      )}
 
       <View className='sudoku-board'>
         {board.map((row, rowIndex) => (
@@ -195,7 +197,7 @@ function Index() {
         onClick={startNewGame}
         onTap={startNewGame}
       >
-        <Text>New Game</Text>
+        <Text>更换题目</Text>
       </View>
     </View>
   )

@@ -7,7 +7,7 @@
 }
 
 .sudoku-container {
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@
 .difficulty-buttons {
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   width: 100%;
   justify-content: center;
 }
@@ -57,41 +57,71 @@
   max-width: 450px;
   aspect-ratio: 1;
   border: 2px solid #333;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(9, 1fr);
+  grid-template-columns: repeat(9, 1fr);
+  position: relative;
+  background: white;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 33.33%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #333;
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 66.66%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #333;
+    z-index: 1;
+  }
 }
 
 .sudoku-row {
-  display: flex;
-  flex: 1;
+  display: contents;
 
-  &:nth-child(3n) {
-    border-bottom: 2px solid #333;
-  }
-
-  &:last-child {
-    border-bottom: none;
+  &:last-child > .sudoku-cell {
+    margin-bottom: 0;
   }
 }
 
 .sudoku-cell {
-  flex: 1;
-  border: 1px solid #ccc;
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
-  background: white;
   position: relative;
   transition: all 0.3s ease;
+  background: white;
 
   &:nth-child(3n) {
     border-right: 2px solid #333;
   }
 
-  &:last-child {
+  &:nth-child(9n) {
     border-right: none;
+  }
+
+  &:nth-child(3n) {
+    margin-right: 2px;
+  }
+
+  &:last-child {
+    margin-right: 0;
   }
 
   &.fixed {
@@ -121,11 +151,11 @@
   gap: 5px;
   width: 100%;
   max-width: 300px;
-  margin-top: 5px;
+  margin-top: 0px;
 }
 
 .number-button {
-  height: 50px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,7 +164,7 @@
   background: #ffffff;
   color: #333333;
   border: 1px solid #e8e8e8;
-  border-radius: 8px;
+  border-radius: 5px;
 
   &:active {
     background: #667eea;
@@ -154,5 +184,5 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
-  margin-top: 20px;
+  margin-top: 5px;
 }
