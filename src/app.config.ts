@@ -34,11 +34,9 @@ export default defineAppConfig({
         pagePath: 'pages/profile/index',
         text: 'Profile'
       }
-    ],
-    hideBar: ['pages/success/index', 'pages/failure/index']
+    ]
   },
   subPackages: [],
-  subpackages: [],
   preloadRule: {},
   lazyCodeLoading: "requiredComponents"
 })

@@ -7,24 +7,49 @@
 }
 
 .sudoku-container {
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  min-height: 100vh;
+  background: #f8f9fa;
 }
 
 .difficulty-buttons {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.difficulty-button {
+  flex: 1;
+  max-width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #ffffff;
+  color: #666666;
+  border: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.active {
+    background: #667eea;
+    color: #ffffff;
+    border: none;
+  }
 }
 
 .error-counter {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   color: #e53935;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 .sudoku-board {
@@ -70,8 +95,7 @@
   }
 
   &.fixed {
-    color: #666;
-    background: #f5f5f5;
+    color: #667eea;
   }
 
   &.selected {
@@ -94,19 +118,41 @@
 .number-pad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 5px;
   width: 100%;
   max-width: 300px;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .number-button {
-  width: 100% !important;
-  height: 50px !important;
-  font-size: 20px !important;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  background: #ffffff;
+  color: #333333;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+
+  &:active {
+    background: #667eea;
+    color: #ffffff;
+  }
 }
 
 .new-game-button {
+  width: 200px;
+  height: 44px;
+  border-radius: 22px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #667eea;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
   margin-top: 20px;
-  width: 200px !important;
 }

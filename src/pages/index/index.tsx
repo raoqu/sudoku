@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { View } from '@tarojs/components'
-import { Button, ConfigProvider } from '@nutui/nutui-react-taro'
+import { View, Text } from '@tarojs/components'
 import { generateSudoku, Board, Cell, Difficulty, isBoardComplete } from '../../utils/sudoku'
 import { playSound } from '../../utils/sound'
-import Taro from '@tarojs/taro'
+import Taro, { eventCenter } from '@tarojs/taro'
 import './index.scss'
 
 interface CellError {
@@ -130,69 +129,75 @@ function Index() {
   };
 
   return (
-    <ConfigProvider>
-      <View className='sudoku-container'>
-        <View className='difficulty-buttons'>
-          <Button
-            type={difficulty === 'simple' ? 'primary' : 'default'}
-            onClick={() => handleDifficultyChange('simple')}
-          >
-            Simple
-          </Button>
-          <Button
-            type={difficulty === 'middle' ? 'primary' : 'default'}
-            onClick={() => handleDifficultyChange('middle')}
-          >
-            Middle
-          </Button>
-          <Button
-            type={difficulty === 'hard' ? 'primary' : 'default'}
-            onClick={() => handleDifficultyChange('hard')}
-          >
-            Hard
-          </Button>
+    <View className='sudoku-container'>
+      <View className='difficulty-buttons'>
+        <View 
+          className={`difficulty-button ${difficulty === 'simple' ? 'active' : ''}`}
+          onClick={() => handleDifficultyChange('simple')}
+          onTap={() => handleDifficultyChange('simple')}
+        >
+          <Text>Simple</Text>
         </View>
-
-        <View className='error-counter'>
-          Mistakes: {errorCount} / {MAX_ERRORS}
+        <View
+          className={`difficulty-button ${difficulty === 'middle' ? 'active' : ''}`}
+          onClick={() => handleDifficultyChange('middle')}
+          onTap={() => handleDifficultyChange('middle')}
+        >
+          <Text>Middle</Text>
         </View>
-
-        <View className='sudoku-board'>
-          {board.map((row, rowIndex) => (
-            <View key={rowIndex} className='sudoku-row'>
-              {row.map((cell: Cell, colIndex) => (
-                <View
-                  key={`${rowIndex}-${colIndex}`}
-                  className={`sudoku-cell ${cell.fixed ? 'fixed' : ''} ${
-                    selectedCell?.[0] === rowIndex && selectedCell?.[1] === colIndex ? 'selected' : ''
-                  } ${isCellError(rowIndex, colIndex) ? 'error' : ''}`}
-                  onClick={() => handleCellClick(rowIndex, colIndex)}
-                >
-                  {cell.value !== 0 ? cell.value : ''}
-                </View>
-              ))}
-            </View>
-          ))}
+        <View
+          className={`difficulty-button ${difficulty === 'hard' ? 'active' : ''}`}
+          onClick={() => handleDifficultyChange('hard')}
+          onTap={() => handleDifficultyChange('hard')}
+        >
+          <Text>Hard</Text>
         </View>
-
-        <View className='number-pad'>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-            <Button
-              key={num}
-              onClick={() => handleNumberInput(num)}
-              type='default'
-              className='number-button'
-            >
-              {num}
-            </Button>
-          ))}
-        </View>
-
-        <Button type='primary' onClick={startNewGame} className='new-game-button'>
-          New Game
-        </Button>
       </View>
-    </ConfigProvider>
+
+      <View className='error-counter'>
+        <Text>Mistakes: {errorCount} / {MAX_ERRORS}</Text>
+      </View>
+
+      <View className='sudoku-board'>
+        {board.map((row, rowIndex) => (
+          <View key={rowIndex} className='sudoku-row'>
+            {row.map((cell: Cell, colIndex) => (
+              <View
+                key={`${rowIndex}-${colIndex}`}
+                className={`sudoku-cell ${cell.fixed ? 'fixed' : ''} ${
+                  selectedCell?.[0] === rowIndex && selectedCell?.[1] === colIndex ? 'selected' : ''
+                } ${isCellError(rowIndex, colIndex) ? 'error' : ''}`}
+                onClick={() => handleCellClick(rowIndex, colIndex)}
+                onTap={() => handleCellClick(rowIndex, colIndex)}
+              >
+                <Text>{cell.value !== 0 ? cell.value : ''}</Text>
+              </View>
+            ))}
+          </View>
+        ))}
+      </View>
+
+      <View className='number-pad'>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+          <View
+            key={num}
+            className='number-button'
+            onClick={() => handleNumberInput(num)}
+            onTap={() => handleNumberInput(num)}
+          >
+            <Text>{num}</Text>
+          </View>
+        ))}
+      </View>
+
+      <View
+        className='new-game-button'
+        onClick={startNewGame}
+        onTap={startNewGame}
+      >
+        <Text>New Game</Text>
+      </View>
+    </View>
   )
 }
 
